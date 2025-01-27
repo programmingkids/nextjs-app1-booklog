@@ -71,3 +71,9 @@ model Review {
   book Book @relation(fields: [bookId], references: [id])
   bookId Int
 }
+
+
+model Hoge {
+  id Int @default(autoincrement()) @id
+  name String
+}
