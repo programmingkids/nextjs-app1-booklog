@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { FaXmark } from "react-icons/fa6";
 import { type GoogleBookIdProps } from "@/types/index";
 import { getBookByGoogleId } from "@/db/book";
 
@@ -11,9 +13,12 @@ export const ReviewList = async ({ googleBookId }: GoogleBookIdProps) => {
         result.data.review.map(({ id, comment }) => (
           <div
             key={id}
-            className="border border-gray-400 rounded-lg bg-white mb-4 p-4 text-left"
+            className="border border-gray-400 rounded-lg bg-white mb-4 p-4 text-left flex justify-start"
           >
-            {comment}
+            <Link href={`/review/${id}/delete`}>
+              <FaXmark className="mr-2 p-1 text-2xl rounded-lg bg-gray-200 hover:bg-gray-400 hover:text-gray-200" />
+            </Link>
+            <div>{comment}</div>
           </div>
         ))
       ) : (

@@ -57,7 +57,7 @@ export const GoogleBookItem = ({
         </div>
         <div className="mt-5 mb-2 grid grid-cols-2 gap-4">
           <ButtonLink
-            href={`/review/${googleBookId}`}
+            href={`/book/${googleBookId}`}
             text="レビュー登録"
             color="orange"
           />

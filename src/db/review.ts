@@ -19,3 +19,24 @@ export async function createReview(data: ReviewOptionalDefaults) {
     };
   }
 }
+
+export async function deleteReview(id: number) {
+  // 削除
+  try {
+    const deletedReview = await prisma.review.delete({
+      where: {
+        id,
+      },
+    });
+    return {
+      success: true,
+      data: deletedReview,
+    };
+  } catch {
+    // データベースエラー発生
+    return {
+      success: false,
+      error: { server_error: ["Database Error"] },
+    };
+  }
+}

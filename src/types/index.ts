@@ -18,6 +18,12 @@ export type BookPageProps = {
   };
 };
 
+export type ReviewDeletePageProps = {
+  params: {
+    id: string;
+  };
+};
+
 export type GoogleBook = {
   googleBookId: string;
   title: string;
@@ -102,6 +108,10 @@ export type BottomNavigationIconLinkType = Pick<
 
 export type GoogleBookIdProps = {
   googleBookId: string;
+};
+
+export type ReviewDeleteFormProps = {
+  id: number;
 };
 
 export type ReviewGoogleIdType = z.infer<typeof ReviewGoogleIdSchema>;

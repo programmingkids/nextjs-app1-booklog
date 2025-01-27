@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { getBookById } from "@/api/book";
 import { createBook, getBookByGoogleId } from "@/db/book";
 import { createReview } from "@/db/review";
+import { deleteReview } from "@/db/review";
 import { ReviewGoogleIdSchema } from "@/types/schema";
 import { type ReviewGoogleIdType } from "@/types/index";
 
@@ -96,5 +97,16 @@ export async function createReviewAction(data: ReviewGoogleIdType) {
   return {
     success: true,
     data: result4.data?.review[0],
+  };
+}
+
+// レビューを削除するサーバーアクション関数
+export async function deleteReviewAction(id: number) {
+  await deleteReview(id);
+  // 一覧画面のキャッシュ削除
+  revalidatePath("/");
+  // 結果を返す
+  return {
+    success: true,
   };
 }
