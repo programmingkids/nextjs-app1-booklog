@@ -22,8 +22,6 @@ export const BookAuthorScalarFieldEnumSchema = z.enum(['id','authorId','bookId',
 
 export const ReviewScalarFieldEnumSchema = z.enum(['id','comment','bookId']);
 
-export const HogeScalarFieldEnumSchema = z.enum(['id','name']);
-
 export const SortOrderSchema = z.enum(['asc','desc']);
 
 export const QueryModeSchema = z.enum(['default','insensitive']);
@@ -381,31 +379,3 @@ export type ReviewWithPartialRelations = z.infer<typeof ReviewSchema> & ReviewPa
 export const ReviewWithPartialRelationsSchema: z.ZodType<ReviewWithPartialRelations> = ReviewSchema.merge(z.object({
   book: z.lazy(() => BookPartialWithRelationsSchema),
 }).partial())
-
-/////////////////////////////////////////
-// HOGE SCHEMA
-/////////////////////////////////////////
-
-export const HogeSchema = z.object({
-  id: z.number().int(),
-  name: z.string(),
-})
-
-export type Hoge = z.infer<typeof HogeSchema>
-
-/////////////////////////////////////////
-// HOGE PARTIAL SCHEMA
-/////////////////////////////////////////
-
-export const HogePartialSchema = HogeSchema.partial()
-
-export type HogePartial = z.infer<typeof HogePartialSchema>
-
-// HOGE OPTIONAL DEFAULTS SCHEMA
-//------------------------------------------------------
-
-export const HogeOptionalDefaultsSchema = HogeSchema.merge(z.object({
-  id: z.number().int().optional(),
-}))
-
-export type HogeOptionalDefaults = z.infer<typeof HogeOptionalDefaultsSchema>
