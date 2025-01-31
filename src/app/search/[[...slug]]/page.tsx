@@ -19,7 +19,6 @@ export default async function Page({ params: { slug } }: SearchPageProps) {
   const baseUrl = `/search/${keyword}`;
 
   // APIで書籍データ検索
-  const { limit, total, books } = await getBooksByKeyword(keyword, page);
 
   return (
     <div className="main">
@@ -29,17 +28,6 @@ export default async function Page({ params: { slug } }: SearchPageProps) {
       </h1>
       <SearchBox {...{ keyword }} />
       <h2 className="text-lg">検索結果</h2>
-      {keyword == "" ? (
-        <div className="m-4">検索語を入力してください</div>
-      ) : total <= 0 ? (
-        <div className="m-4">検索結果が見つかりません</div>
-      ) : (
-        <>
-          <Pagination {...{ total, limit, page, baseUrl }} />
-          <GoogleBookList {...{ books }} />
-          <Pagination {...{ total, limit, page, baseUrl }} />
-        </>
-      )}
     </div>
   );
 }

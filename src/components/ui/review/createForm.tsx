@@ -38,20 +38,6 @@ export const ReviewCreateForm = ({ googleBookId }: GoogleBookIdProps) => {
   ) => {
     // 送信時にエラー表示を解除
     clearErrors();
-    // サーバアクションを起動
-    const result = await createReviewAction(data);
-    // サーバー側でエラー
-    if (!result.success) {
-      Object.entries(result.error!).map(([k, v]) => {
-        setError(`root.${k}`, { message: v[0] });
-      });
-      return;
-    }
-    // 登録成功の場合、モーダルを表示する
-    setData(result.data);
-    setOpen(true);
-    // フォームをクリアする
-    reset();
   };
 
   const onSuccess = () => {

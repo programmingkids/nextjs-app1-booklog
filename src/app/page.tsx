@@ -10,7 +10,6 @@ export const metadata: Metadata = {
 
 export default async function Home() {
   // DBから書籍一覧を取得
-  const books = await getBooks();
   return (
     <div className="main">
       <h1 className="p-4 bg-violet-400 text-white text-2xl">
@@ -19,7 +18,6 @@ export default async function Home() {
       </h1>
       <SearchBox keyword={""} />
       <div className="font-bold">書籍一覧（レビュー登録済み）</div>
-      {books && <BookList {...{ books }} />}
     </div>
   );
 }

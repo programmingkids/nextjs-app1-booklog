@@ -18,8 +18,6 @@ export async function getBooksByKeyword(keyword: string, page: number = 1) {
 
   // APIに対する通信処理
   const url = `${APIURL}?q=${keyword}&maxResults=${limit}&startIndex=${startIndex}&langRestrict=ja&printType=books&key=${APIKEY}`;
-  const data = await fetch(url);
-  const { items, totalItems: total } = await data.json();
 
   // 検索結果が空の場合、エラー
   if (total <= 0 || !items) {

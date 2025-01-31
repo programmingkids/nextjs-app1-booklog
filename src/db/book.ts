@@ -47,25 +47,4 @@ export async function getBookByGoogleId(
   googleBookId: string,
 ): Promise<BookReturnType> {
   // googleBookIdで指定した1件の書籍を取得
-  const result = await prisma.book.findFirst({
-    where: {
-      googleBookId,
-    },
-    include: {
-      bookAuthors: {
-        include: {
-          author: true,
-        },
-      },
-      review: true,
-    },
-  });
-  return result !== null
-    ? {
-        success: true,
-        data: result,
-      }
-    : {
-        success: false,
-      };
 }
