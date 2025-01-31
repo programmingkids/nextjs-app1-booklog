@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { MdSearch } from "react-icons/md";
-import { IconButton } from "@/components/ui/elements/button";
 import { type SearchBoxProps } from "@/types/index";
+import { IconButton } from "@/components/ui/elements/button";
 
 export const SearchBox = ({ keyword = "" }: SearchBoxProps) => {
   const router = useRouter();

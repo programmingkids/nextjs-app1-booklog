@@ -1,12 +1,11 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { type ReviewGoogleIdType } from "@/types/index";
+import { ReviewGoogleIdSchema } from "@/types/schema";
 import { getBookById } from "@/api/book";
 import { createBook, getBookByGoogleId } from "@/db/book";
-import { createReview } from "@/db/review";
-import { deleteReview } from "@/db/review";
-import { ReviewGoogleIdSchema } from "@/types/schema";
-import { type ReviewGoogleIdType } from "@/types/index";
+import { createReview, deleteReview } from "@/db/review";
 
 // 新規登録処理を行うサーバーアクション関数
 export async function createReviewAction(data: ReviewGoogleIdType) {
@@ -24,13 +23,13 @@ export async function createReviewAction(data: ReviewGoogleIdType) {
   const { googleBookId, comment } = data;
 
   // DBでのBookの存在確認
-  const result2 = await getBookByGoogleId(googleBookId);
+  const bookDataFromDB = await getBookByGoogleId(googleBookId);
 
-  if (result2.success) {
+  if (bookDataFromDB.success) {
     // 存在するならば、Reviewの追加
     const reviewData = {
       comment,
-      bookId: result2.data.id,
+      bookId: bookDataFromDB.data.id,
     };
     // レビューのみの新規登録
     const review = await createReview(reviewData);
@@ -44,9 +43,9 @@ export async function createReviewAction(data: ReviewGoogleIdType) {
   }
 
   // DBに存在しないならば、APIからデータ取得
-  const result3 = await getBookById(googleBookId);
+  const bookDataFromAPI = await getBookById(googleBookId);
 
-  if (!result3.success) {
+  if (!bookDataFromAPI.success) {
     return {
       success: false,
       error: { server_error: ["API Error"] },
@@ -55,7 +54,7 @@ export async function createReviewAction(data: ReviewGoogleIdType) {
 
   // APIから取得したデータ
   const { authors, title, description, publishDate, imageLink, volumeLink } =
-    result3.book;
+    bookDataFromAPI.book;
 
   // Authorのデータ整形
   const authorCreateData = !authors
@@ -89,19 +88,20 @@ export async function createReviewAction(data: ReviewGoogleIdType) {
   };
 
   // Book、Author、Reviewの一括新規登録
-  const result4 = await createBook(newBook);
+  const newBookData = await createBook(newBook);
 
   // 一覧画面のキャッシュ削除
   revalidatePath("/");
   // 結果を返す
   return {
     success: true,
-    data: result4.data?.review[0],
+    data: newBookData.data?.review[0],
   };
 }
 
 // レビューを削除するサーバーアクション関数
 export async function deleteReviewAction(id: number) {
+  // DBからレビューを削除
   await deleteReview(id);
   // 一覧画面のキャッシュ削除
   revalidatePath("/");

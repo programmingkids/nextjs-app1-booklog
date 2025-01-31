@@ -1,16 +1,17 @@
 import { type Metadata } from "next";
-import { type BookPageProps } from "@/types/index";
 import { FaCommentDots } from "react-icons/fa6";
+import { type BookPageProps } from "@/types/index";
 import { getBookById } from "@/api/book";
-import { CommentBookItem } from "@/components/ui/commentBookItem";
+import { BookItem } from "@/components/ui/bookItem";
 import { ReviewCreateForm } from "@/components/ui/review/createForm";
 import { ReviewList } from "@/components/ui/review/list";
 
 export const metadata: Metadata = {
-  title: "Review",
+  title: "Book",
 };
 
 export default async function Page({ params: { id } }: BookPageProps) {
+  // APIから1件の書籍データを取得
   const result = await getBookById(id);
   return (
     <div className="main">
@@ -23,7 +24,7 @@ export default async function Page({ params: { id } }: BookPageProps) {
           <div>該当の本が存在しません</div>
         ) : (
           <>
-            <CommentBookItem {...result.book} />
+            <BookItem {...result.book} />
             <ReviewCreateForm googleBookId={result.book.googleBookId} />
             <ReviewList googleBookId={result.book.googleBookId} />
           </>

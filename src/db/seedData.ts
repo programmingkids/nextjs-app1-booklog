@@ -1,24 +1,24 @@
 const initData = [
   {
     googleBookId: "Bie6AwAAQBAJ",
-    title: "Hoge",
-    description: "hogehogehoge",
-    publishDate: new Date("2020-10-25"),
-    imageLink: "https://wwww.yahoo.co.jp.",
-    volumeLink: "https://wwww.yahoo.co.jp.",
+    title: "Dammy",
+    description: "Dammy, Dammy, Dammy, Dammy",
+    publishDate: "2020-10-25",
+    imageLink: "",
+    volumeLink: "",
     bookAuthors: {
       create: [
         {
           author: {
             create: {
-              name: "AAA",
+              name: "DammyAuthor",
             },
           },
         },
         {
           author: {
             create: {
-              name: "BBB",
+              name: "DammyAuthor",
             },
           },
         },
@@ -27,10 +27,10 @@ const initData = [
     review: {
       create: [
         {
-          comment: "this is comment1",
+          comment: "this is dammy comment1",
         },
         {
-          comment: "this is comment2",
+          comment: "this is dammy comment2",
         },
       ],
     },

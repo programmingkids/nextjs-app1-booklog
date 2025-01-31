@@ -1,5 +1,5 @@
-import prisma from "@/db/prisma";
 import { type ReviewOptionalDefaults } from "@/prisma-zod/index";
+import prisma from "@/db/prisma";
 
 export async function createReview(data: ReviewOptionalDefaults) {
   // 新規登録

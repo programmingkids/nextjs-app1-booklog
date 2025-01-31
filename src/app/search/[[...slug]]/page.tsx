@@ -18,6 +18,7 @@ export default async function Page({ params: { slug } }: SearchPageProps) {
   const page = Number(p);
   const baseUrl = `/search/${keyword}`;
 
+  // APIで書籍データ検索
   const { limit, total, books } = await getBooksByKeyword(keyword, page);
 
   return (

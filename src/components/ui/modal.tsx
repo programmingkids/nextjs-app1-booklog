@@ -2,15 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { HiOutlineXMark } from "react-icons/hi2";
-
-type Props = {
-  open: boolean;
-  onClose: () => void;
-  onSuccess: () => void;
-  data: { id?: number } | undefined;
-  successText: string;
-  title: string;
-};
+import { SuccessModalProps } from "@/types";
 
 export const SuccessModal = ({
   open,
@@ -19,7 +11,7 @@ export const SuccessModal = ({
   data,
   successText,
   title,
-}: Props) => {
+}: SuccessModalProps) => {
   // Refオブジェクト作成
   const modalRef = useRef<HTMLDivElement>(null);
   // キーダウンイベントハンドラー

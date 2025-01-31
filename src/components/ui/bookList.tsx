@@ -3,19 +3,11 @@ import { FaCommentDots } from "react-icons/fa6";
 import { MdCalendarMonth } from "react-icons/md";
 import { HiAcademicCap } from "react-icons/hi2";
 import { HiOutlineExternalLink } from "react-icons/hi";
-import {
-  type BookWithPartialRelations,
-  type BookWithRelations,
-  type BookPartialWithRelations,
-} from "@/prisma-zod/index";
+import { BookListProps } from "@/types";
 import { ButtonLink, IconButtonLink } from "@/components/ui/elements/button";
 import noimage from "@/assets/image/noimage.png";
 
-type Props = {
-  books: BookWithPartialRelations[];
-};
-
-export const BookList = ({ books }: Props) => {
+export const BookList = ({ books }: BookListProps) => {
   return (
     <div className="m-4">
       {books.map(
@@ -55,7 +47,7 @@ export const BookList = ({ books }: Props) => {
               <div className="mb-8">
                 <p className="text-sm text-gray-600 flex items-center mb-2">
                   <MdCalendarMonth className="text-xl mr-2" />
-                  {publishDate.toString()}
+                  {publishDate}
                 </p>
                 <p className="text-sm text-gray-600 flex items-center mb-2">
                   <FaCommentDots className="text-xl mr-2" />

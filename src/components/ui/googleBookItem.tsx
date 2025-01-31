@@ -2,9 +2,9 @@ import Image from "next/image";
 import { MdCalendarMonth } from "react-icons/md";
 import { HiAcademicCap } from "react-icons/hi2";
 import { HiOutlineExternalLink } from "react-icons/hi";
+import { GoogleBook } from "@/types/index";
 import { ButtonLink, IconButtonLink } from "@/components/ui/elements/button";
 import noimage from "@/assets/image/noimage.png";
-import { GoogleBook } from "@/types/index";
 
 export const GoogleBookItem = ({
   googleBookId,
@@ -40,7 +40,7 @@ export const GoogleBookItem = ({
         <div className="mb-8">
           <p className="text-sm text-gray-600 flex items-center">
             <MdCalendarMonth className="text-xl mr-2" />
-            {publishDate.toString()}
+            {publishDate}
           </p>
           <div className="text-left text-gray-900 font-bold text-lg mb-2">
             {title}

@@ -2,12 +2,11 @@ import Image from "next/image";
 import { MdCalendarMonth } from "react-icons/md";
 import { HiAcademicCap } from "react-icons/hi2";
 import { HiOutlineExternalLink } from "react-icons/hi";
-import { ButtonLink, IconButtonLink } from "@/components/ui/elements/button";
-import noimage from "@/assets/image/noimage.png";
 import { GoogleBook } from "@/types/index";
+import { IconButtonLink } from "@/components/ui/elements/button";
+import noimage from "@/assets/image/noimage.png";
 
-export const CommentBookItem = ({
-  googleBookId,
+export const BookItem = ({
   title,
   authors,
   description,

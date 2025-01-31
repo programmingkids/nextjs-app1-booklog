@@ -1,14 +1,15 @@
 import { type Metadata } from "next";
 import { MdHome } from "react-icons/md";
 import { SearchBox } from "@/components/ui/searchBox";
-import { getBooks } from "@/db/book";
 import { BookList } from "@/components/ui/bookList";
+import { getBooks } from "@/db/book";
 
 export const metadata: Metadata = {
   title: "Home | BookLog",
 };
 
 export default async function Home() {
+  // DBから書籍一覧を取得
   const books = await getBooks();
   return (
     <div className="main">

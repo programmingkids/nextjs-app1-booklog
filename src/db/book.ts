@@ -1,6 +1,7 @@
-import prisma from "@/db/prisma";
 import { Prisma } from "@prisma/client";
+import { type BookReturnType } from "@/types";
 import { type Book, type BookWithPartialRelations } from "@/prisma-zod/index";
+import prisma from "@/db/prisma";
 
 export async function getBooks() {
   // 全件取得
@@ -42,19 +43,10 @@ export async function createBook(data: Prisma.BookCreateInput) {
   }
 }
 
-type BookReturnType =
-  | {
-      success: true;
-      data: BookWithPartialRelations;
-    }
-  | {
-      success: false;
-    };
-
 export async function getBookByGoogleId(
   googleBookId: string,
 ): Promise<BookReturnType> {
-  // 1件を取得
+  // googleBookIdで指定した1件の書籍を取得
   const result = await prisma.book.findFirst({
     where: {
       googleBookId,

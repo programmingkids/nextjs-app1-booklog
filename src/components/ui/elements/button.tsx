@@ -63,7 +63,7 @@ export const BottomNavIconLink = function ({
   return (
     <Link href={href}>
       {icon}
-      <div className="text-xs -translate-y-0.5">{text}</div>
+      <div className="text-xs -translate-y-0.3">{text}</div>
     </Link>
   );
 };

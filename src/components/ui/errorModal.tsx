@@ -2,20 +2,14 @@
 
 import { useState, useEffect, useRef } from "react";
 import { HiOutlineXMark } from "react-icons/hi2";
-
-type Props = {
-  onSuccess: () => void;
-  message: string | undefined;
-  successText: string;
-  title: string;
-};
+import { ErrorModalProps } from "@/types";
 
 export const ErrorModal = ({
   onSuccess,
   message,
   successText,
   title,
-}: Props) => {
+}: ErrorModalProps) => {
   const [open, setOpen] = useState(true);
   // Refオブジェクト作成
   const modalRef = useRef<HTMLDivElement>(null);

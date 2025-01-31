@@ -16,19 +16,19 @@ export const getPageNumbers = function ({
   let endPage = lastPageNumber;
 
   if (lastPageNumber <= 1) {
-    // Don't show numbers if there's only 1 page
+    // 1ページなら空を返す
     return [];
   }
 
   if (currentPageNumber <= maxPagesBeforeCurrentPage) {
-    // near the start
+    // 左側より
     startPage = 1;
     endPage = pageNumbersToShow;
   } else if (currentPageNumber + maxPagesAfterCurrentPage >= lastPageNumber) {
-    // near the end
+    // 右側より
     startPage = lastPageNumber - pageNumbersToShow + 1;
   } else {
-    // somewhere in the middle
+    // 中央部分
     startPage = currentPageNumber - maxPagesBeforeCurrentPage;
     endPage = currentPageNumber + maxPagesAfterCurrentPage;
   }

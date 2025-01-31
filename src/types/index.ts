@@ -1,6 +1,11 @@
 import { z } from "zod";
 
 import { ReviewGoogleIdSchema } from "@/types/schema";
+import { type BookWithPartialRelations } from "@/prisma-zod/index";
+
+export type BookListProps = {
+  books: BookWithPartialRelations[];
+};
 
 export type SearchBoxProps = {
   keyword: string;
@@ -81,6 +86,15 @@ export type PageNumbersArgs = {
 
 export type PageNumbersReturn = number[];
 
+export type BookReturnType =
+  | {
+      success: true;
+      data: BookWithPartialRelations;
+    }
+  | {
+      success: false;
+    };
+
 export type Color = "blue" | "red" | "green" | "orange";
 
 export type ButtonLinkProps = {
@@ -115,3 +129,19 @@ export type ReviewDeleteFormProps = {
 };
 
 export type ReviewGoogleIdType = z.infer<typeof ReviewGoogleIdSchema>;
+
+export type SuccessModalProps = {
+  open: boolean;
+  onClose: () => void;
+  onSuccess: () => void;
+  data: { id?: number } | undefined;
+  successText: string;
+  title: string;
+};
+
+export type ErrorModalProps = {
+  onSuccess: () => void;
+  message: string | undefined;
+  successText: string;
+  title: string;
+};

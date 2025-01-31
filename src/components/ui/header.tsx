@@ -10,7 +10,9 @@ export const Header = function () {
         </Link>
       </div>
       <div className="justify-self-center">
-        <Link href="/" className="text-xl">読書アプリ</Link>
+        <Link href="/" className="text-xl">
+          読書アプリ
+        </Link>
       </div>
       <div className="justify-self-end"></div>
     </header>

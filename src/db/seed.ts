@@ -3,6 +3,7 @@ import initData from "@/db/seedData";
 import { sequential } from "@/lib/functions";
 
 async function main() {
+  // 今回は初期データは登録しない
   // const promises = initData.map((data) => {
   //   return async () => {
   //     const result = await prisma.book.create({
