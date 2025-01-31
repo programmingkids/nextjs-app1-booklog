@@ -102,9 +102,9 @@ export async function createReviewAction(data: ReviewGoogleIdType) {
 // レビューを削除するサーバーアクション関数
 export async function deleteReviewAction(id: number) {
   // DBからレビューを削除
-
+  await deleteReview(id);
   // 一覧画面のキャッシュ削除
-
+  revalidatePath("/");
   // 結果を返す
   return {
     success: true,

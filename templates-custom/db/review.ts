@@ -23,14 +23,15 @@ export async function createReview(data: ReviewOptionalDefaults) {
 export async function deleteReview(id: number) {
   // 削除
   try {
-    // Prismaで削除のSQLを実行
-    // 戻り値の型は以下の通り
-    /*
-    { 
+    const deletedReview = await prisma.review.delete({
+      where: {
+        id,
+      },
+    });
+    return {
       success: true,
-      data: {}
-    }
-    */
+      data: deletedReview,
+    };
   } catch {
     // データベースエラー発生
     return {

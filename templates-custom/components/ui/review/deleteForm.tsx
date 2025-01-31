@@ -18,7 +18,7 @@ export const ReviewDeleteForm = ({ id }: ReviewDeleteFormProps) => {
   // onSubmitイベントのハンドラー
   const onSubmit: SubmitHandler<{ id: number }> = async () => {
     // サーバアクションを起動
-
+    await deleteReviewAction(id);
     // リダイレクト
     router.replace("/");
   };

@@ -45,9 +45,20 @@ export const BookList = ({ books }: BookListProps) => {
             </div>
             <div className="mt-4 md:mt-0 col-span-1 md:col-span-3">
               <div className="mb-8">
+                <p className="text-sm text-gray-600 flex items-center mb-2">
+                  <MdCalendarMonth className="text-xl mr-2" />
+                  {publishDate}
+                </p>
+                <p className="text-sm text-gray-600 flex items-center mb-2">
+                  <FaCommentDots className="text-xl mr-2" />
+                  {review ? review.length : 0}件のレビュー
+                </p>
                 <div className="text-left text-gray-900 font-bold text-lg mb-2">
                   {title}
                 </div>
+                <p className="text-gray-700 text-sm line-clamp-5 min-h-24 text-left">
+                  {description}
+                </p>
               </div>
               <div className="flex items-center">
                 <div className="text-sm text-left">
